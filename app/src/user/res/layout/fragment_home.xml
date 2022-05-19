@@ -33,7 +33,6 @@
             android:textSize="16sp" />
 
         <RelativeLayout
-            android:id="@+id/cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/btn_logout">
@@ -100,7 +99,8 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/product_sans_regular"
             android:text="+New menu"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

@@ -25,6 +25,23 @@ android {
         }
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        seller {
+            applicationIdSuffix ".seller"
+            dimension "default"
+            versionCode 1
+            versionName "1.0"
+            manifestPlaceholders = [appTheme: "@style/MainThemeSeller"]
+        }
+        user {
+            applicationIdSuffix ".user"
+            dimension "default"
+            versionCode 1
+            versionName "1.0"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

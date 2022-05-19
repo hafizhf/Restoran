@@ -29,14 +29,15 @@
             android:layout_toEndOf="@id/tv_greeting"
             android:fontFamily="@font/product_sans_regular"
             android:text="User"
-            android:textColor="@color/main"
+            android:textColor="@color/main_seller"
             android:textSize="16sp" />
 
         <RelativeLayout
             android:id="@+id/cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/btn_logout">
+            android:layout_toStartOf="@+id/btn_logout"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/btn_goto_favorite"
@@ -86,7 +87,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/product_sans_bold"
             android:text="Menu"
-            android:textColor="@color/main"
+            android:textColor="@color/main_seller"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -110,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:theme="@style/MainTheme" />
+        android:theme="@style/MainThemeSeller" />
 
     <LinearLayout
         android:id="@+id/nothing_handler"
