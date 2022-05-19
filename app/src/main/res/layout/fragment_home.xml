@@ -95,11 +95,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_greeting"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="32.5dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/product_sans_regular"
-            android:text="+Add menu"
-            android:textSize="20sp" />
+            android:text="+New menu"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 

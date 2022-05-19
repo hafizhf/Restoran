@@ -8,8 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="default_grey">#757575</color>
-    <color name="main">#DD1F1F</color>
-    <color name="main_grey">#6C6C6C</color>
-    <color name="main_available">#58C83F</color>
+    <color name="main">#EF564C</color>
+    <color name="main_seller">#2B91EE</color>
+    <color name="main_grey">#AAAAAA</color>
+    <color name="main_available">#87BC61</color>
+    <color name="main_remove">#DA4036</color>
     <color name="main_dark">#121212</color>
 </resources>

@@ -16,6 +16,7 @@ class AdapterFoodFavorite(
 ) : RecyclerView.Adapter<AdapterFoodFavorite.ViewHolder>() {
 
     private var foodData: List<FavoriteFood>? = null
+    private var totalPrice: Int = 0
 
     fun setFavoriteFoodList(foodList: List<FavoriteFood>) {
         this.foodData = foodList
@@ -35,6 +36,13 @@ class AdapterFoodFavorite(
             .into(holder.itemView.iv_thumbnail_makanan)
         holder.itemView.tv_nama_makanan.text = foodData!![position].nama_makanan
         holder.itemView.tv_harga.text = "Rp " + foodData!![position].harga
+
+        val itemPrice = foodData!![position].jumlah?.toInt()?.let {
+            foodData!![position].harga?.toInt()
+                ?.times(it)
+        }
+
+        totalPrice += itemPrice!!
 
         holder.itemView.item.setOnClickListener {
             val matchWithApiModel = GetAllMenuRestaurantItem(
@@ -78,6 +86,10 @@ class AdapterFoodFavorite(
         } else {
             0
         }
+    }
+
+    fun totalPrice() : Int {
+        return totalPrice
     }
 
 

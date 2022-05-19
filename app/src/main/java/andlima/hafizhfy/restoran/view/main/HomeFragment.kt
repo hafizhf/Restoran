@@ -54,6 +54,9 @@ class HomeFragment : Fragment() {
         userManager.username.asLiveData().observe(this, {
             tv_username.text = it.toString()
         })
+        userManager.id.asLiveData().observe(this, { userID ->
+            getCartAmount(userID.toInt())
+        })
 
 //        foodAdapter = AdapterFood {  }
 
@@ -101,6 +104,19 @@ class HomeFragment : Fragment() {
             }
         })
         viewModel.getFoodData()
+    }
+
+    private fun getCartAmount(ownerID: Int) {
+        val viewModel = ViewModelProvider(this).get(ViewModelHome::class.java)
+        viewModel.getLiveCartAmount().observe(this, {
+            if (it != 0) {
+                info_cart.visibility = View.VISIBLE
+                tv_item_amount.text = it.toString()
+            } else {
+                info_cart.visibility = View.GONE
+            }
+        })
+        viewModel.getCartItemAmount(requireContext(), ownerID)
     }
 
     // Function to exit app with double click on back button----------------------------------------

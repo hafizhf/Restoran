@@ -12,6 +12,7 @@ class ViewModelFavorite: ViewModel() {
     private var mDb: FavoriteFoodDatabase? = null
 
     lateinit var liveDataList: MutableLiveData<List<FavoriteFood>>
+//    lateinit var liveDataTotalPrice: MutableLiveData<Int>
 
     init {
         liveDataList = MutableLiveData()
@@ -33,4 +34,6 @@ class ViewModelFavorite: ViewModel() {
             liveDataList.postValue(null)
         }
     }
+
+
 }

@@ -23,6 +23,9 @@ interface ApiService {
         @Body request: PutFood
     ) : Call<GetAllMenuRestaurantItem>
 
+    @DELETE("menu-restoran/{id}")
+    fun deleteFood(@Path("id") id: Int) : Call<GetAllMenuRestaurantItem>
+
     @GET("user")
     fun getUser(@Query("email") email : String) : Call<List<GetAllUserItem>>
 

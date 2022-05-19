@@ -50,6 +50,12 @@ class EditFoodFragment : Fragment() {
                 toast(requireContext(), "Don't leave any blank form")
             }
         }
+
+        btn_delete_food.setOnClickListener {
+            alertDialog(requireContext(), "Delete Food", "Are you sure want to delete this food?") {
+                deleteFood(selectedData.id)
+            }
+        }
     }
 
     private fun updateFood(
@@ -78,7 +84,7 @@ class EditFoodFragment : Fragment() {
                     } else {
                         alertDialog(
                             requireContext(),
-                            "Update data failed",
+                            "Update food failed",
                             response.message() + "\n\nTry again"
                         ) {}
                     }
@@ -87,7 +93,38 @@ class EditFoodFragment : Fragment() {
                 override fun onFailure(call: Call<GetAllMenuRestaurantItem>, t: Throwable) {
                     alertDialog(
                         requireContext(),
-                        "Update data error",
+                        "Update food error",
+                        t.message + "\n\nTry again"
+                    ) {}
+                }
+
+            })
+    }
+
+    private fun deleteFood(foodID: String) {
+        ApiClient.instance.deleteFood(foodID.toInt())
+            .enqueue(object : retrofit2.Callback<GetAllMenuRestaurantItem>{
+                override fun onResponse(
+                    call: Call<GetAllMenuRestaurantItem>,
+                    response: Response<GetAllMenuRestaurantItem>
+                ) {
+                    if (response.isSuccessful) {
+                        snackbarLong(requireView(), "Food deleted from menu")
+                        Navigation.findNavController(view!!)
+                            .navigate(R.id.action_editFoodFragment_to_homeFragment)
+                    } else {
+                        alertDialog(
+                            requireContext(),
+                            "Delete food failed",
+                            response.message() + "\n\nTry again"
+                        ) {}
+                    }
+                }
+
+                override fun onFailure(call: Call<GetAllMenuRestaurantItem>, t: Throwable) {
+                    alertDialog(
+                        requireContext(),
+                        "Delete food error",
                         t.message + "\n\nTry again"
                     ) {}
                 }

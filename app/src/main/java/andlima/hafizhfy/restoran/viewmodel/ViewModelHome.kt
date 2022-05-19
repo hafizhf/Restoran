@@ -1,7 +1,9 @@
 package andlima.hafizhfy.restoran.viewmodel
 
+import andlima.hafizhfy.restoran.local.room.FavoriteFoodDatabase
 import andlima.hafizhfy.restoran.model.menurestaurant.GetAllMenuRestaurantItem
 import andlima.hafizhfy.restoran.network.ApiClient
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
@@ -9,14 +11,23 @@ import retrofit2.Response
 
 class ViewModelHome : ViewModel() {
 
+    // Get local room database
+    private var mDb: FavoriteFoodDatabase? = null
+
     lateinit var liveDataList: MutableLiveData<List<GetAllMenuRestaurantItem>>
+    lateinit var liveDataCartAmount: MutableLiveData<Int>
 
     init {
         liveDataList = MutableLiveData()
+        liveDataCartAmount = MutableLiveData()
     }
 
     fun getLiveDataFood() : MutableLiveData<List<GetAllMenuRestaurantItem>> {
         return liveDataList
+    }
+
+    fun getLiveCartAmount() : MutableLiveData<Int> {
+        return liveDataCartAmount
     }
 
     fun getFoodData() {
@@ -38,5 +49,14 @@ class ViewModelHome : ViewModel() {
                 }
 
             })
+    }
+
+    fun getCartItemAmount(context: Context, ownerID: Int) {
+        // Get room database instance
+        mDb = FavoriteFoodDatabase.getInstance(context)
+
+        val amount = mDb?.favoriteFoodDao()?.getUsersFavoriteFood(ownerID)
+
+        liveDataCartAmount.postValue(amount?.size)
     }
 }

@@ -14,11 +14,14 @@ import andlima.hafizhfy.restoran.local.datastore.UserManager
 import andlima.hafizhfy.restoran.local.room.FavoriteFood
 import andlima.hafizhfy.restoran.local.room.FavoriteFoodDatabase
 import andlima.hafizhfy.restoran.model.menurestaurant.GetAllMenuRestaurantItem
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.core.os.bundleOf
 import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -41,6 +44,7 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
+    @DelicateCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -64,8 +68,10 @@ class DetailFragment : Fragment() {
 
             if (fabAdded) {
                 changeFabIcon(R.drawable.ic_remove)
+                changeFabColor(R.color.main_remove)
             } else {
                 changeFabIcon(R.drawable.ic_add_item)
+                changeFabColor(R.color.main_available)
             }
 
             fab_add_item.setOnClickListener {
@@ -136,5 +142,10 @@ class DetailFragment : Fragment() {
 
     private fun changeFabIcon(icon: Int) {
         fab_add_item.setImageResource(icon)
+    }
+
+    private fun changeFabColor(color: Int) {
+        fab_add_item.backgroundTintList = ColorStateList.valueOf(color)
+        fab_add_item.rippleColor = color
     }
 }

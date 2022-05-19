@@ -185,6 +185,17 @@
             android:textAllCaps="false"
             app:cornerRadius="20dp" />
 
+        <TextView
+            android:id="@+id/btn_delete_food"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Delete"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/product_sans_bold"
+            android:textColor="#F44D4D"/>
+
     </LinearLayout>
 
 </RelativeLayout>

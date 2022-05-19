@@ -51,7 +51,7 @@ class FavoriteFragment : Fragment() {
         userManager.id.asLiveData().observe(this, { userID ->
             btn_order.setOnClickListener {
                 alertDialog(requireContext(), "Order", "Want to order it now?") {
-                    val clearCart = mDb?.favoriteFoodDao()?.removeFromFavorite(userID.toInt())
+                    val clearCart = mDb?.favoriteFoodDao()?.orderFoodFromCart(userID.toInt())
 
                     if (clearCart != 0) {
                         snackbarLong(requireView(), "Food ordered")
@@ -92,7 +92,6 @@ class FavoriteFragment : Fragment() {
                     .navigate(R.id.action_favoriteFragment_to_detailFragment, selectedData)
             }
             rv_favorite_food_list.adapter = favFoodAdapter
-
             initViewModel(userID.toInt())
         })
     }

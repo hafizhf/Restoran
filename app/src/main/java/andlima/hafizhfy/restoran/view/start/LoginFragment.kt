@@ -127,11 +127,15 @@ class LoginFragment : Fragment() {
     private fun isLoggedIn() {
         // Get something from data store
         userManager = UserManager(requireContext())
+        loading_check_user_loggedin.visibility = View.VISIBLE
 
         userManager.email.asLiveData().observe(this, {
             if (it != "") {
+                loading_check_user_loggedin.visibility = View.GONE
                 Navigation.findNavController(view!!)
                     .navigate(R.id.action_loginFragment_to_homeFragment)
+            } else {
+                loading_check_user_loggedin.visibility = View.GONE
             }
         })
     }
